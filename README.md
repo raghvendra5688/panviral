@@ -91,7 +91,7 @@ over the 9 proteins) and `Aggregate_Rank`. Full column description in [results/R
 
 ## Licence and data provenance
 
-No licence file has been added yet; choose one before making the repository public. DeepPurpose models are
-distributed by their authors (see [models/README.md](models/README.md)); protein sequences come from UniProt;
-the source library of the 2,216 drugs (`data/compounds/compound_info.csv`) should be checked for redistribution
-terms before the repository is made public.
+The code in this repository is released under the MIT licence (see [LICENSE](LICENSE)). The licence covers the code,
+not third-party material: DeepPurpose models are distributed by their authors (see [models/README.md](models/README.md));
+protein sequences come from UniProt; the source library of the 2,216 drugs (`data/compounds/compound_info.csv`) may
+carry its own redistribution terms.
