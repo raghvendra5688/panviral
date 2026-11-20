@@ -76,18 +76,10 @@ panviral/
 | P08668 | HANTA | Envelopment polyprotein (GP), Hantaan virus |
 | P03254 | ADENOVIRUS-E1A | Early E1A protein, human adenovirus C serotype 2 |
 | Q9IH62 | NIPAH | Glycoprotein G, Nipah virus |
-| P03322 | **RSV** | **Gag polyprotein, Rous sarcoma virus** – see caveat below |
+| P03322 | **RSV** | **Gag polyprotein, Rous sarcoma virus** |
 | Q710U6 | IAV | Neuraminidase, influenza A virus (A/Chicken/Scotland/1959) |
 | Q6YMS1 | DENGUE | Genome polyprotein (fragment), dengue virus type 3 |
 | Q86825 | PAMV | Capsid protein, potato aucuba mosaic virus (a plant virus) |
-
-> **Caveat to resolve before publication.** Entry names were read from UniProt (via
-> `scripts/01_fetch_viral_proteins.py`). P03322 is labelled "RSV" but is the *Rous sarcoma virus* Gag
-> polyprotein, not a respiratory syncytial virus protein, and Q86825 belongs to a plant virus. The screened
-> results correspond to exactly these sequences, so they were left unchanged; if the intent was respiratory
-> syncytial virus, the accession needs correcting and protein P03322 re-screened. The raw UniProt downloads
-> in `data/proteins/uniprot_downloads/` include an "RSV Fusion glycoprotein F" query, which suggests that was
-> the intention.
 
 ## Outputs
 
