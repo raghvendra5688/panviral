@@ -1,0 +1,24 @@
+# Model weights are downloaded with scripts/00_download_models.py, never committed
+models/pretrained_models/*
+!models/pretrained_models/.gitkeep
+
+# Run artefacts
+logs/*
+!logs/.gitkeep
+save_folder/
+*.log
+*.err
+
+# Python / Jupyter / editors
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.virtual_documents/
+.vscode/
+.idea/
+.DS_Store
+.RData
+.Rhistory
+
+# Machine-specific config overrides
+config/config.local.yaml

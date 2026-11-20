@@ -1,0 +1,48 @@
+# Panviral drug-repurposing pipeline configuration.
+# All paths are relative to the repository root (the folder containing this config/ directory).
+
+paths:
+  protein_table:   data/proteins/protein_info.csv            # UniProtId, Sequence, Virus
+  compound_table:  data/compounds/compound_info.csv          # InchiKey, Canonical_SMILES (the 2,216 screened drugs)
+  models_dir:      models/pretrained_models                  # filled by scripts/00_download_models.py
+  model_checksums: models/checksums.sha256
+  screenings_dir:  results/ml_screenings                     # one sub-folder per model
+  ranks_out:       results/panviral_drug_protein_ranks.csv
+
+screening:
+  batch_size: 1024        # DeepPurpose inference batch size (reduce if the GPU runs out of memory)
+
+# Viral proteins screened (UniProt accession -> label used in protein_table).
+# scripts/01_fetch_viral_proteins.py rebuilds protein_table from these accessions.
+viral_proteins:
+  Q6WB98: HMPV
+  P0DTC2: SARS2-Spike
+  P08668: HANTA
+  P03254: ADENOVIRUS-E1A
+  Q9IH62: NIPAH
+  P03322: RSV
+  Q710U6: IAV
+  Q6YMS1: DENGUE
+  Q86825: PAMV
+
+# The 18 DeepPurpose pretrained drug-target interaction models whose per-protein drug
+# rankings are combined (median rank / Borda) into the consensus ranking.
+models:
+  - CNN_CNN_BindingDB_IC50
+  - MPNN_CNN_DAVIS
+  - Morgan_CNN_BindingDB_IC50
+  - Morgan_AAC_BindingDB_IC50
+  - Daylight_AAC_BindingDB_IC50
+  - CNN_CNN_DAVIS
+  - CNN_CNN_BindingDB
+  - Morgan_CNN_BindingDB
+  - Morgan_CNN_DAVIS
+  - MPNN_CNN_BindingDB
+  - MPNN_CNN_KIBA
+  - Transformer_CNN_BindingDB
+  - Daylight_AAC_DAVIS
+  - Daylight_AAC_KIBA
+  - Daylight_AAC_BindingDB
+  - Morgan_AAC_BindingDB
+  - Morgan_AAC_KIBA
+  - Morgan_AAC_DAVIS

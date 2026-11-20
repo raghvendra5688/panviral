@@ -1,0 +1,26 @@
+# Environment for the FULL pipeline (model download + GPU screening + aggregation).
+#
+# NOTE: not verified from scratch. The published results were produced in a local micromamba env
+# (named "effichem") whose exact package versions were not available when this repository was assembled.
+# DeepPurpose 0.1.5 pins an old stack (RDKit, DGL, DGL-LifeSci, descriptastorus, ...); if the solver
+# complains, follow the install notes at https://github.com/kexinhuang12345/DeepPurpose and keep the
+# versions you end up with in this file (`conda env export --from-history` + `pip freeze`).
+#
+# For aggregation only (no GPU), use requirements-aggregation.txt instead.
+name: panviral
+channels:
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - pyyaml
+  - requests
+  - rdkit
+  - pytorch
+  - pip:
+      - DeepPurpose==0.1.5

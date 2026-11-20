@@ -1,0 +1,8 @@
+# Minimal requirements to reproduce the consensus ranking from the shipped results (scripts/03_aggregate_ranks.py)
+# and to check the protein table against UniProt (scripts/01_fetch_viral_proteins.py).
+# Verified with pandas 2.2 / numpy 2.2 / scipy 1.15 and with pandas 2.0 / numpy 1.24 / scipy 1.10.
+numpy
+pandas
+scipy
+pyyaml
+requests

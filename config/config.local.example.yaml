@@ -1,0 +1,4 @@
+# Copy to config/config.local.yaml (git-ignored) to override settings on this machine only.
+# Any key of config.yaml can be overridden; absolute paths are allowed.
+paths:
+  models_dir: /path/to/existing/pretrained_models   # folder containing <model_name>/{config.pkl,model.pt}
