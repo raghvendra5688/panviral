@@ -91,6 +91,10 @@ over the 9 proteins) and `Aggregate_Rank`. Full column description in [results/R
 
 *Predictions are computational hypotheses from sequence-based models, not evidence of antiviral activity.*
 
+**Known limitation:** all 18 models are ranked by descending score, but for the three KIBA models a lower score may mean
+stronger binding; flipping them changes the ranking noticeably. The published convention is kept; details and a
+sensitivity option are in [docs/WORKFLOW.md](docs/WORKFLOW.md#caveat-score-direction-of-the-three-kiba-models).
+
 ## Licence and data provenance
 
 The code in this repository is released under the MIT licence (see [LICENSE](LICENSE)). The licence covers the code,

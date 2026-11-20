@@ -63,8 +63,10 @@ weakly with each other on these out-of-domain viral proteins; the KIBA models' c
 +0.04, +0.18 and -0.01). The effect on the result is substantial: with those three models flipped
 (`python scripts/03_aggregate_ranks.py --lower-is-better MPNN_CNN_KIBA Daylight_AAC_KIBA Morgan_AAC_KIBA`), the
 Spearman correlation between the two `Aggregate_Rank` columns is 0.86 and only 6 of the top-10 and 31 of the top-50
-drugs are shared. The default is unchanged so that the published ranking is reproduced exactly; whichever direction is
-adopted should be decided and stated explicitly before the results are published.
+drugs are shared. **Decision:** the published convention is kept (all 18 models ranked by descending score), so
+`results/panviral_drug_protein_ranks.csv` is unchanged and reproducible with the default settings. The KIBA direction is
+a known limitation of the published ranking; the `--lower-is-better` run above gives the alternative if it is needed
+for a sensitivity analysis.
 
 ## Reproducibility notes
 * `scripts/03_aggregate_ranks.py` reproduces the shipped ranking exactly (all 2,216 × 11 values; checked with
