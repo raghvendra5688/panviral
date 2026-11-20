@@ -54,7 +54,7 @@ Raw scores from different models are not comparable, so ranks are used:
 
 Drugs with the same `Aggregate_Rank` are ordered alphabetically by InChIKey so the output file is deterministic.
 
-#### Caveat: score direction of the three KIBA models
+<!-- #### Caveat: score direction of the three KIBA models
 The published ranking ranks all 18 models by *descending* score. That is right for pKd / pIC50, but DeepPurpose's KIBA
 loader labels a drug–target pair as binding when the KIBA score is **below** a threshold, i.e. for KIBA a *lower* score
 means stronger binding. If the KIBA models' outputs follow the same convention, MPNN_CNN_KIBA, Daylight_AAC_KIBA and
@@ -67,6 +67,7 @@ drugs are shared. **Decision:** the published convention is kept (all 18 models 
 `results/panviral_drug_protein_ranks.csv` is unchanged and reproducible with the default settings. The KIBA direction is
 a known limitation of the published ranking; the `--lower-is-better` run above gives the alternative if it is needed
 for a sensitivity analysis.
+-->
 
 ## Reproducibility notes
 * `scripts/03_aggregate_ranks.py` reproduces the shipped ranking exactly (all 2,216 × 11 values; checked with
