@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run every drug x viral-protein pair through the 18 DeepPurpose pretrained models.
 
-For each model, DeepPurpose predicts a binding score (pKd / pIC50-like, higher = stronger) for all
+For each model, DeepPurpose predicts a binding score (pKd / pIC50 for the BindingDB and DAVIS models, KIBA score for the KIBA models) for all
 (drug, protein) pairs and the result table is written to
     results/ml_screenings/<model>/<model>_virtual_screening.csv
 (DeepPurpose writes a PrettyTable-formatted text file; the `.csv` name is kept for backwards

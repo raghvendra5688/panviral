@@ -32,6 +32,7 @@ python scripts/01_fetch_viral_proteins.py --check   # optional: confirm sequence
 python scripts/02_run_virtual_screening.py --dry-run   # validate inputs and models first
 python scripts/02_run_virtual_screening.py
 python scripts/03_aggregate_ranks.py
+python scripts/04_fetch_drug_names.py          # optional: refresh drug names from PubChem (internet)
 ```
 
 All paths are repo-relative and set in `config/config.yaml`; machine-specific overrides (e.g. a models folder that
@@ -51,11 +52,12 @@ panviral/
 │   ├── 01_fetch_viral_proteins.py  rebuild/check the viral protein table from UniProt
 │   ├── 02_run_virtual_screening.py drug × protein × model predictions (GPU)
 │   ├── 03_aggregate_ranks.py       median-rank consensus + pan-viral ranking (CPU, seconds)
+│   ├── 04_fetch_drug_names.py      look up drug names for the InChIKeys in PubChem (needs internet)
 │   ├── run_pipeline.sh             wrapper: `all` or `aggregate`
 │   └── _common.py                  shared helpers
 ├── data/
 │   ├── proteins/                   protein_info.csv (screened sequences) + raw UniProt downloads
-│   ├── compounds/                  compound_info.csv (2,216 drugs: InchiKey, Canonical_SMILES)
+│   ├── compounds/                  compound_info.csv (2,216 drugs: InchiKey, Canonical_SMILES) + drug_names.csv
 │   ├── reference_sequences/        SARS-CoV-2 spike sequence collection (gzip)
 │   └── legacy_pilot/               one earlier pilot results file, kept for provenance only
 ├── models/                     checksums.sha256 + pretrained_models/ (18 models, git-ignored; see models/README.md)

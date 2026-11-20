@@ -40,7 +40,8 @@ averages the per-protein consensus ranks.
 ### 2. Prediction (`02_run_virtual_screening.py`)
 Every drug is paired with every protein (2,216 × 9 = 19,944 pairs). Each of the 18 pretrained models
 (`config/config.yaml → models`) predicts a binding score for every pair with `DeepPurpose.DTI.virtual_screening`
-(`convert_y=False`: scores stay on the model's native, log-scaled affinity axis; higher = stronger binding).
+(`convert_y=False`: scores stay on the model's native scale: pKd / pIC50 for the BindingDB and DAVIS models, where higher =
+stronger binding, and KIBA score for the KIBA models; see the caveat below).
 The models differ in drug encoder (CNN, Morgan fingerprint, Daylight fingerprint, MPNN, Transformer) × protein
 encoder (CNN, AAC) × training set (BindingDB Kd, BindingDB IC50, DAVIS, KIBA), so they capture complementary signal.
 
@@ -52,6 +53,18 @@ Raw scores from different models are not comparable, so ranks are used:
 4. `Mean_Rank` = mean consensus rank over the 9 proteins; `Aggregate_Rank` = rank of `Mean_Rank`.
 
 Drugs with the same `Aggregate_Rank` are ordered alphabetically by InChIKey so the output file is deterministic.
+
+#### Caveat: score direction of the three KIBA models
+The published ranking ranks all 18 models by *descending* score. That is right for pKd / pIC50, but DeepPurpose's KIBA
+loader labels a drug–target pair as binding when the KIBA score is **below** a threshold, i.e. for KIBA a *lower* score
+means stronger binding. If the KIBA models' outputs follow the same convention, MPNN_CNN_KIBA, Daylight_AAC_KIBA and
+Morgan_AAC_KIBA were ranked in the wrong direction. The shipped screenings cannot settle this (all models correlate only
+weakly with each other on these out-of-domain viral proteins; the KIBA models' correlation with the other models is
++0.04, +0.18 and -0.01). The effect on the result is substantial: with those three models flipped
+(`python scripts/03_aggregate_ranks.py --lower-is-better MPNN_CNN_KIBA Daylight_AAC_KIBA Morgan_AAC_KIBA`), the
+Spearman correlation between the two `Aggregate_Rank` columns is 0.86 and only 6 of the top-10 and 31 of the top-50
+drugs are shared. The default is unchanged so that the published ranking is reproduced exactly; whichever direction is
+adopted should be decided and stated explicitly before the results are published.
 
 ## Reproducibility notes
 * `scripts/03_aggregate_ranks.py` reproduces the shipped ranking exactly (all 2,216 × 11 values; checked with
